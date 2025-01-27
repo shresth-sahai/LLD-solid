@@ -1,0 +1,113 @@
+
+SOLID PRINCIPALS -> 
+set of rules used to define things(OOPS) in LLD 
+-> maintian , understand , expand 
+
+S-> Single responsisbility -> a class should have only one reason to change 
+it should have only 1 responsisbility
+
+Real life -> 
+Restaurent -> chef , waiter , cashier -> focus of a class should be to do 
+one thing 
+
+Bad eg 
+class Employee
+    function calc_salary()
+    function save_to_db()
+
+// use this way
+class SalaryCalc()  function calc_salary()
+class save_to_db()  function save_to_db()
+
+2 O -> open closed principal - > 
+A class should be open fr extension but closed fr modification 
+
+eg universal remote control +  -> TV -> redesign is not req 
+code ->
+bad eg 
+class Notification:
+    function send(){
+        if type == email 
+        if type == sms 
+    }
+
+good eg 
+class Notification:
+    function send(){
+
+    }
+class EmailNotification extends Notification{
+
+}
+class SmsNotification extends Notification{
+    
+}
+
+L -> Liskov principal -> objects of super class should be replaceble by 
+objects if its subclasses without effecting the program 
+
+eg charging port 
+-> code bad
+class Rect 
+    function set_w(int w)
+    function set_h(int h)
+    
+class Square
+    function set_w(int w)
+
+good eg 
+class Shape:
+    function area{
+
+    }
+class Rec{
+    function area(){
+
+    }
+}
+class Sqr{
+    function area(){
+        
+    }
+}
+
+Interface Segregation -> class should not be forced to implement interfaces
+it does not use , instead of big interfaces we have smaller interface_
+
+class Worker :
+ function work 
+ function eat 
+
+ Man, Robot 
+
+ class Workable
+    function work()
+
+class Eatable ()
+function eat ()
+
+class Human implements Eatable, Workable
+class Robot implements  Workable
+
+
+Dependency Inversion -> high level modules should not depend on low level 
+Abstraction should not depend on details , detais should depend on abstraction 
+class Keyword
+class Monitor
+bad eg 
+class Computer  {
+    KeyBoard k =new KeyBoard();
+}
+
+class Input device {
+    IPDevice = KEYBOARD 
+}
+class Output Device{
+
+}
+
+
+
+
+
+
