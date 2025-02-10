@@ -1,0 +1,155 @@
+Design Patterns -> reusable soln -> software problem 
+scalable , maintainable etc 
+
+catogories ->
+1 Creational -> handles object Creation
+2 Structural -> Deal with object composition
+3 Behavioural -> focus on communication between objects 
+
+1 Singleton -> ensures only 1 instance is created 
+    real life -> database connection -> printer spooler -> only one instances handles 
+    everything 
+    class Singleton {
+        private static Singleton instance;
+
+        private Singleton(){
+
+        }
+        public static Singleton getInstance(){
+            if(instance==null){
+                instance =new Singleton();
+            }
+        }
+        return Singleton;
+    }
+    main(){
+        Singleton s1=new Singleton.getInstance();
+        Singleton s2=new Singleton.getInstance();
+        if(s1==s2) -> True 
+    }
+2 Factory -> creates objects wihtout specifying exactness 
+Car -> diff engines / brands -> single factory 
+
+interface Car{
+    void drive();
+}
+class Sedan implements Car{
+
+}
+class SUV implements Car{
+
+}
+class CarFactory{
+    public static Car getCar(String carType){
+        if(carType.equals("Sedan")){
+            return new Sedan();
+        }
+    }
+}
+class FactoryEg(){
+    main(){
+        Car myCar=new CarFactory.getCar("SUV");
+        myCar.drive();
+    }
+}
+
+
+2 Strucutal Design Pattern -> 
+relationship between objects 
+Adapter pattern -> converts one interface into another by client 
+Real life -> electrical Adapter 
+
+interface EuropianPlug{
+    String voltage();
+}
+class EuropianSocket implements EuropianPlug{
+    public String voltage(){
+        return "220V";
+    }
+}
+class SocketAdapter{
+
+}
+
+Decorator -> Dynamically adds behaviour to object 
+eg milk adding to coffee 
+interface coffee{
+    int cost();
+}
+class BasicCoffee implements Coffee{
+    public int cost (){
+        return 5;
+    }
+}
+class MilkDecorator implements Coffee{
+    private Coffee coffee;
+    MilkDecorator(Coffee coffee){
+        this.coffee=coffee;
+    }
+    int cost(){
+        return coffee.cost+2;
+    }
+}
+main(){
+    Coffee coffee=new BasicCoffee();
+    Coffee coffeewithMilk =new MilkDecorator(coffee);
+
+}
+
+Behavioural Pattern 
+Observer pattern -> notifiy subscibers when event occurs 
+Utube spotify
+
+interface subsciber{
+    void update(String msg);
+}
+class User implements subsciber{
+    private String name;
+    public User(String name){
+        this.name=name;
+    }
+    public void update(String msg){
+        
+    }
+}
+class UtubeChannel{
+    private List<subsciber> subs=new List<>();
+    public void subscibe(subsciber subsciber){
+        subs.add(subsciber);
+    }
+    public void notifiySubscribers(String message){
+        for(subsciber s:subs){
+            s.update(msg);
+        }
+    }
+}
+
+Strategy Pattern -> allows Dynamic selection of algos at runtime
+
+
+payment -> cc dc upi scanqr 
+interface paymentStrategy{
+    String pay(int amt);
+}
+class cc implements paymentStrategy{
+    public String pay(int amt){
+        return "";
+    }
+}
+class upi implements paymentStrategy{
+    public String pay(int amt){
+        return "";
+    }
+}
+class PayContext{
+    private paymentStrategy strategy;
+    //constructor
+
+    public void payexecute(){
+
+    }
+}
+main(){
+    PayContext payment = new payment(new cc());
+    payment.payexecute(100);
+}
