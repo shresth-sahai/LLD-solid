@@ -1,0 +1,77 @@
+Question
+Design a news feed application that contains a list of feed posts users
+can interact with.
+UI Focussed
+Core requirements-> Browse news feed -> user , friends
+liking & reacting posts
+& creating and publishing posts
+What pagination is required ?
+infinte scroll -> more posts added as the user reaches the end
+HLD ->
+client -> view feed ui -> controller -> client store -----> JSON <---> server
+server -> provide apis fetch posts and creates posts
+controller-> controls flow of data
+client store -> stores the data across the whole app
+news feed data -> server originated
+feed ui -> feed posts , post composer -> what u see is what u get
+Rendering approach -> SSR -> rendering html at server -> static content
+seo friendly eg usage blogs , documentation
+CSR -> rendering in the browser, dynamically adding elememts into page
+eg chatapp CSR
+feed app -> hybrid -> static content -> SSR + interaction -> CSR
+ssr -> initial load fast
+more posts add , navigation -> CSR / Hydration
+Data Model ->
+Feed -> server -> feed ui -> posts -> list of posts, pagaination
+post -> feed post -> id, time,content,author etc
+user -> user client -> post composer -> message , image
+NewPost -> user client -> post composer -> message post
+client store -> normalized store -> Relay -> FB
+-> reduces the duplicate data
+-> easily update data
+pagination
+            -> offset based -> specify end , offset param size 5, page 2
+            inaccurate results -> frequent data updates -no used
+            page size -> not changed
+            page 1 - 5 - 1-5
+            page 2 - 5  6-10
+            query perforamce
+         -> cursor -> uses a pointer -> specific record targeted here
+            -> give me 11-15 pages
+            size , cursor->last item fetched
+            Facebook , slack
+            -> client -> it cannot jump to specific page without going
+            through previous
+            complex
+            fb -> cursor
+            Optimisations ->
+            code splitting -> code divide inti parts
+            List of posts -> Virtualisation of lists -> faster load
+            Browser painting ->
+            Relay -> Graph ql -> query fast
+            Draft.js -> rich text
+            Img -> Webp
+            lazy laoding ->
+        node -> ejs
+            SSR ->
+            const data ={title:"Server side ", message:"this is SSR"};
+            app.get(("/",(req,res)=>{
+                res.render("index",data)
+            }))
+            <body>
+                <h1> <%= message %> </h1>
+            </body>
+CSR -> function app(){
+    const[msg,setMsg]=useState("Loading...")
+    return (
+        <div>
+        {msg}
+        </div>
+    )
+}
+
+
+
+
+
+
